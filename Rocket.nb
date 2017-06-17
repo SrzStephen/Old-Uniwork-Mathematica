@@ -1,0 +1,800 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     28072,        799]
+NotebookOptionsPosition[     26111,        724]
+NotebookOutlinePosition[     26460,        739]
+CellTagsIndexPosition[     26417,        736]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Tsiolovsky Rocket Equation", "Title",
+ CellChangeTimes->{{3.592553020726019*^9, 3.5925530240382085`*^9}, 
+   3.5925598187268424`*^9}],
+
+Cell["\<\
+SM
+Simulating a rockets trajectory assuming \[OpenCurlyDoubleQuote]ideal rocket \
+conditions\[CloseCurlyDoubleQuote] of operating with an initial velocity and \
+accelerating by expelling part of its mass\
+\>", "Subtitle",
+ CellChangeTimes->{{3.5925530378069963`*^9, 3.592553038350027*^9}, {
+  3.592559794572461*^9, 3.592559799132722*^9}, {3.70668598046272*^9, 
+  3.706686052852701*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Prefix", "Section",
+ CellChangeTimes->{{3.592553046110471*^9, 3.5925530497016764`*^9}, {
+  3.5925597865490017`*^9, 3.5925597894041653`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Important note", "Subsection",
+ CellChangeTimes->{{3.592553057510123*^9, 3.5925530589582057`*^9}, {
+  3.592559781228698*^9, 3.5925597828367896`*^9}}],
+
+Cell["\<\
+Important. Occasionally the graph bugs out. Please delete one of the semi \
+colons and retry if this happens.\
+\>", "Text",
+ CellChangeTimes->{{3.5925530748781166`*^9, 3.592553116429493*^9}, {
+   3.5925597189171333`*^9, 3.5925597786375494`*^9}, 3.5925598269483128`*^9, {
+   3.5925600346111903`*^9, 3.5925600369383235`*^9}, {3.706654853261366*^9, 
+   3.7066548538278093`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "Section",
+ CellChangeTimes->{{3.5925597314378495`*^9, 3.5925597460776873`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Assumptions", "Subsection",
+ CellChangeTimes->{{3.592553123325887*^9, 3.5925531289972115`*^9}}],
+
+Cell["\<\
+1. The rocket is suspended over an infinitely deep well, allowing it to reach \
+negative heights. Flight time is calculated at point H(0) to H(0)
+2. Gravity is always 9.81, and only pulls downwards.
+3. Drag and air resistance do not occur. The rocket is fired in a vacuum.\
+\>", "Text",
+ CellChangeTimes->{{3.5925531319813824`*^9, 3.5925531391177907`*^9}, {
+  3.5925598425962076`*^9, 3.592560018187251*^9}, {3.7066860692641997`*^9, 
+  3.706686071122317*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Graph", "Section",
+ CellChangeTimes->{{3.5925531471102476`*^9, 3.592553147693281*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"hup", "[", 
+    RowBox[{"eV_", ",", "pL_", ",", "fL_", ",", "bR_", ",", "t_"}], "]"}], 
+   "=", 
+   RowBox[{"Integrate", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"eV", "*", 
+       RowBox[{"Log", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"pL", "+", "fL", "-", 
+           RowBox[{"bR", "*", "t"}]}], ")"}]}], "]"}]}], "-", 
+      RowBox[{"9.81", "*", "t"}]}], ",", "t"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"hdp1", "[", 
+    RowBox[{"eV_", ",", "pL_", ",", "fL_", ",", "bR_", ",", "t_"}], "]"}], 
+   StyleBox[" ",
+    FontWeight->"Plain"], 
+   StyleBox["=",
+    FontWeight->"Plain"], 
+   StyleBox[" ",
+    FontWeight->"Plain"], 
+   RowBox[{
+    RowBox[{
+     StyleBox["(",
+      FontWeight->"Plain"], 
+     RowBox[{"Integrate", "[", 
+      RowBox[{
+       RowBox[{"velocity", "[", 
+        RowBox[{"eV", ",", "pL", ",", "fL", ",", "bR", ",", "t"}], "]"}], ",",
+        "t"}], "]"}], " ", ")"}], "/.", " ", 
+    RowBox[{"{", 
+     RowBox[{"t", " ", "\[Rule]", " ", 
+      RowBox[{"(", 
+       RowBox[{"fL", "/", "bR"}], ")"}]}], "}"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"velocity", "[", 
+    RowBox[{"eV_", ",", "pL_", ",", "fL_", ",", "bR_", ",", "t_"}], "]"}], 
+   " ", "=", " ", 
+   RowBox[{
+    RowBox[{"eV", "*", 
+     RowBox[{"Log", "[", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"pL", "+", "fL", "-", 
+         RowBox[{"bR", "*", "t"}]}], ")"}]}], "]"}]}], "-", 
+    RowBox[{"9.81", "*", "t"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"hdp2", "[", 
+    RowBox[{"eV_", ",", "pL_", ",", "fL_", ",", "bR_", ",", "t_"}], "]"}], 
+   StyleBox[" ",
+    FontWeight->"Plain"], "=", "   ", 
+   RowBox[{
+    RowBox[{"hdp1", "[", 
+     RowBox[{"eV", ",", "pL", ",", "fL", ",", "bR", ",", "t"}], "]"}], "+", 
+    " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"vmax", "[", 
+       RowBox[{"eV", ",", "pL", ",", "fL", ",", "bR", ",", "t"}], "]"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"t", "-", 
+        RowBox[{"fL", "/", "bR"}]}], ")"}]}], ")"}], "-", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"(", 
+       RowBox[{"9.81", "*", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"t", "-", 
+           RowBox[{"fL", "/", "bR"}]}], ")"}], "^", "2"}]}], ")"}], ")"}], 
+     "/", "2"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"vmax", "[", 
+     RowBox[{"eV_", ",", "pL_", ",", "fL_", ",", "bR_", ",", "t_"}], "]"}], 
+    " ", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"eV", "*", 
+       RowBox[{"Log", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"pL", "+", "fL", "-", 
+           RowBox[{"bR", "*", 
+            RowBox[{"(", 
+             RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], "]"}]}], "-", 
+      RowBox[{"9.81", "*", 
+       RowBox[{"(", 
+        RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Piecewise", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"hup", "[", 
+             RowBox[{"eV", ",", "pL", ",", "fL", ",", "bR", ",", "t"}], "]"}],
+             ",", 
+            RowBox[{"t", " ", "\[LessEqual]", 
+             RowBox[{"(", 
+              RowBox[{"(", 
+               RowBox[{"fL", "/", "bR"}], ")"}], ")"}]}]}], "}"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"hdp2", "[", 
+             RowBox[{"eV", ",", "pL", ",", "fL", ",", "bR", ",", "t"}], "]"}],
+             ",", 
+            RowBox[{"t", ">=", " ", 
+             RowBox[{"(", 
+              RowBox[{"(", 
+               RowBox[{"fL", "/", "bR"}], ")"}], ")"}]}]}], "}"}]}], 
+         "\[IndentingNewLine]", "}"}], "\[IndentingNewLine]", "]"}], ",", 
+       RowBox[{"Piecewise", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"eV", "*", 
+              RowBox[{"Log", "[", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+                RowBox[{"(", 
+                 RowBox[{"pL", "+", "fL", "-", 
+                  RowBox[{"bR", "*", "t"}]}], ")"}]}], "]"}]}], "-", 
+             RowBox[{"9.8", "*", "t"}]}], ",", 
+            RowBox[{"t", " ", "<=", 
+             RowBox[{"(", 
+              RowBox[{"fL", "/", "bR"}], ")"}]}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"eV", "*", 
+                RowBox[{"Log", "[", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+                  RowBox[{"(", 
+                   RowBox[{"pL", "+", "fL", "-", 
+                    RowBox[{"bR", "*", 
+                    RowBox[{"(", 
+                    RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], "]"}]}], 
+               "-", 
+               RowBox[{"9.8", "*", 
+                RowBox[{"(", 
+                 RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}], "-", 
+             RowBox[{"9.8", "*", 
+              RowBox[{"(", 
+               RowBox[{"t", "-", 
+                RowBox[{"(", 
+                 RowBox[{"fL", "/", "bR"}], ")"}]}], ")"}]}]}], ",", 
+            RowBox[{"t", ">=", " ", 
+             RowBox[{"(", 
+              RowBox[{"fL", "/", "bR"}], ")"}]}]}], "}"}]}], "}"}], "]"}]}], 
+      "}"}], "\[IndentingNewLine]", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "time"}], "}"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<height\>\"", ",", "\"\<velocity\>\""}], "}"}]}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Seconds\>\"", ",", "\"\<Meters\>\""}], "}"}]}]}], "]"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"eV", ",", "291", ",", "\"\<Exhaust Velocity\>\""}], "}"}], ",",
+      "1", ",", "1000"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pL", ",", ".775", ",", "\"\<Payload Mass\>\""}], "}"}], ",", 
+     ".1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"fL", ",", ".415", ",", "\"\<Fuel Mass\>\""}], "}"}], ",", ".1",
+      ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"bR", ",", ".32", ",", "\"\<Burn Rate\>\""}], "}"}], ",", ".1", 
+     ",", "30"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"time", ",", "25", ",", "\"\<Time\>\""}], "}"}], ",", "0", ",", 
+     "100"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", " ", "\[Rule]", " ", "Left"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.592553162864149*^9, 3.5925531814412117`*^9}, {
+  3.5925532536303406`*^9, 3.592553257416557*^9}, {3.592557904327345*^9, 
+  3.592557913622877*^9}, {3.592558444181223*^9, 3.5925584504285803`*^9}, {
+  3.5925585144372416`*^9, 3.5925585202845755`*^9}, {3.5925594948133154`*^9, 
+  3.5925595479413548`*^9}, {3.592559583860409*^9, 3.592559691245551*^9}, {
+  3.592560868270873*^9, 3.5925609608771696`*^9}, {3.5925610008774576`*^9, 
+  3.5925610132531652`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Integrate","ilim",
+   "\"Invalid integration variable or limit(s) in \\!\\(\\*FractionBox[\\\"fL\
+\\\", \\\"bR\\\"]\\).\"",2,2,10,22956016186201721353,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7066548235686264`*^9, 3.7066860792667828`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Integrate","ilim",
+   "\"Invalid integration variable or limit(s) in \\!\\(\\*FractionBox[\\\"fL\
+\\\", \\\"bR\\\"]\\).\"",2,4,11,22956016186201721353,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7066548235686264`*^9, 3.7066860793300023`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`bR$$ = 23.1, $CellContext`eV$$ = 
+    72., $CellContext`fL$$ = 7.72, $CellContext`pL$$ = 
+    0.30600000000000005`, $CellContext`time$$ = 8.200000000000001, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`eV$$], 291, "Exhaust Velocity"}, 1, 1000}, {{
+       Hold[$CellContext`pL$$], 0.775, "Payload Mass"}, 0.1, 2}, {{
+       Hold[$CellContext`fL$$], 0.415, "Fuel Mass"}, 0.1, 10}, {{
+       Hold[$CellContext`bR$$], 0.32, "Burn Rate"}, 0.1, 30}, {{
+       Hold[$CellContext`time$$], 25, "Time"}, 0, 100}}, Typeset`size$$ = {
+    450., {102., 108.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`eV$3275$$ = 
+    0, $CellContext`pL$3276$$ = 0, $CellContext`fL$3277$$ = 
+    0, $CellContext`bR$3278$$ = 0, $CellContext`time$3279$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`bR$$ = 0.32, $CellContext`eV$$ = 
+        291, $CellContext`fL$$ = 0.415, $CellContext`pL$$ = 
+        0.775, $CellContext`time$$ = 25}, "ControllerVariables" :> {
+        Hold[$CellContext`eV$$, $CellContext`eV$3275$$, 0], 
+        Hold[$CellContext`pL$$, $CellContext`pL$3276$$, 0], 
+        Hold[$CellContext`fL$$, $CellContext`fL$3277$$, 0], 
+        Hold[$CellContext`bR$$, $CellContext`bR$3278$$, 0], 
+        Hold[$CellContext`time$$, $CellContext`time$3279$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Plot[{
+         Piecewise[{{
+            $CellContext`hup[$CellContext`eV$$, $CellContext`pL$$, \
+$CellContext`fL$$, $CellContext`bR$$, $CellContext`t], $CellContext`t <= \
+$CellContext`fL$$/$CellContext`bR$$}, {
+            $CellContext`hdp2[$CellContext`eV$$, $CellContext`pL$$, \
+$CellContext`fL$$, $CellContext`bR$$, $CellContext`t], $CellContext`t >= \
+$CellContext`fL$$/$CellContext`bR$$}}], 
+         Piecewise[{{$CellContext`eV$$ 
+             Log[($CellContext`pL$$ + $CellContext`fL$$)/($CellContext`pL$$ + \
+$CellContext`fL$$ - $CellContext`bR$$ $CellContext`t)] - 
+            9.8 $CellContext`t, $CellContext`t <= \
+$CellContext`fL$$/$CellContext`bR$$}, {($CellContext`eV$$ 
+              Log[($CellContext`pL$$ + $CellContext`fL$$)/($CellContext`pL$$ + \
+$CellContext`fL$$ - $CellContext`bR$$ ($CellContext`fL$$/$CellContext`bR$$))] - 
+             9.8 ($CellContext`fL$$/$CellContext`bR$$)) - 
+            9.8 ($CellContext`t - $CellContext`fL$$/$CellContext`bR$$), \
+$CellContext`t >= $CellContext`fL$$/$CellContext`bR$$}}]}, {$CellContext`t, 
+         0, $CellContext`time$$}, PlotLegends -> {"height", "velocity"}, 
+        AxesLabel -> {"Seconds", "Meters"}], 
+      "Specifications" :> {{{$CellContext`eV$$, 291, "Exhaust Velocity"}, 1, 
+         1000}, {{$CellContext`pL$$, 0.775, "Payload Mass"}, 0.1, 
+         2}, {{$CellContext`fL$$, 0.415, "Fuel Mass"}, 0.1, 
+         10}, {{$CellContext`bR$$, 0.32, "Burn Rate"}, 0.1, 
+         30}, {{$CellContext`time$$, 25, "Time"}, 0, 100}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{769., {133., 140.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.5925609219689445`*^9, 3.59256101420422*^9}, 
+   3.5925612270943966`*^9, 3.7066860794032335`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0.`\\\"]\\) \
+encountered.\"",2,7,12,22956016186201721353,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7066860827830315`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0.`\\\"]\\) \
+encountered.\"",2,7,13,22956016186201721353,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7066860861715636`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0.`\\\"]\\) \
+encountered.\"",2,7,14,22956016186201721353,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.706686090101243*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0.`\\\"]\\) \
+encountered.\"",2,7,15,22956016186201721353,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.706686091255512*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part 1 MaxHeight", "Subsection",
+ CellChangeTimes->{{3.5925567129472017`*^9, 3.592556714882313*^9}, {
+  3.592557373253969*^9, 3.5925573775732164`*^9}, {3.5925615677278795`*^9, 
+  3.592561570072014*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"MaxHeight", "[", 
+   RowBox[{"eV_", ",", "pL_", ",", "fL_", ",", "bR_"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "vv", ",", "vd", ",", "vma", ",", "hd1", ",", "hd2", ",", "posv", ",", 
+      "maxh"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"vv", "=", 
+      RowBox[{
+       RowBox[{"eV", "*", 
+        RowBox[{"Log", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"pL", "+", "fL", "-", 
+            RowBox[{"bR", "*", "t"}]}], ")"}]}], "]"}]}], "-", 
+       RowBox[{"9.81", "*", "t"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"vd", "=", 
+      RowBox[{"vma", "-", 
+       RowBox[{"9.81", "*", 
+        RowBox[{"(", 
+         RowBox[{"t", "-", 
+          RowBox[{"(", 
+           RowBox[{"fL", "/", "bR"}], ")"}]}], ")"}]}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"vma", "=", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"eV", "*", 
+         RowBox[{"Log", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"pL", "+", "fL", "-", 
+             RowBox[{"bR", "*", 
+              RowBox[{"(", 
+               RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], "]"}]}], "-", 
+        RowBox[{"9.81", "*", 
+         RowBox[{"(", 
+          RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], " ", ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"hd1", "=", 
+      RowBox[{
+       RowBox[{"eV", " ", 
+        RowBox[{"(", 
+         RowBox[{"fL", "/", "bR"}], ")"}]}], "-", 
+       RowBox[{"4.9`", " ", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"fL", "/", "bR"}], ")"}], "2"]}], "-", 
+       FractionBox[
+        RowBox[{"eV", " ", 
+         RowBox[{"(", 
+          RowBox[{"fL", "+", "pL", "-", 
+           RowBox[{"bR", " ", 
+            RowBox[{"(", 
+             RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}], " ", 
+         RowBox[{"Log", "[", 
+          FractionBox[
+           RowBox[{"fL", "+", "pL"}], 
+           RowBox[{"fL", "+", "pL", "-", 
+            RowBox[{"bR", " ", 
+             RowBox[{"(", 
+              RowBox[{"fL", "/", "bR"}], ")"}]}]}]], "]"}]}], "bR"]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"hd2", "=", 
+      RowBox[{"hd1", "+", 
+       RowBox[{"(", 
+        RowBox[{"vma", "*", 
+         RowBox[{"(", 
+          RowBox[{"t", "-", 
+           RowBox[{"fL", "/", "bR"}]}], ")"}]}], ")"}], "-", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"(", 
+          RowBox[{"9.81", "*", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"t", "-", 
+              RowBox[{"fL", "/", "bR"}]}], ")"}], "^", "2"}]}], ")"}], ")"}], 
+        "/", "2"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"MaxValue", "[", 
+      RowBox[{"hd2", ",", "t"}], "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"MaxHeight", "[", 
+  RowBox[{"291", ",", ".775", ",", ".415", ",", ".32"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.592557424725913*^9, 3.5925576040561705`*^9}, {
+   3.5925576756002626`*^9, 3.5925577584950037`*^9}, {3.5925577960071497`*^9, 
+   3.5925578318471994`*^9}, {3.5925579414614687`*^9, 
+   3.5925579580654182`*^9}, {3.592558254816392*^9, 3.592558262674841*^9}, {
+   3.5925583275835543`*^9, 3.5925583612434793`*^9}, {3.5925584573709774`*^9, 
+   3.592558600635172*^9}, {3.592558729028515*^9, 3.5925587565730906`*^9}, {
+   3.592558877377*^9, 3.5925589267198224`*^9}, 3.5925603245337725`*^9}],
+
+Cell[BoxData["707.0803941370708`"], "Output",
+ CellChangeTimes->{3.592560325408823*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part 2 MaxVelocity", "Subsection",
+ CellChangeTimes->{{3.5925568515141277`*^9, 3.5925568522091675`*^9}, {
+  3.59256156300861*^9, 3.592561565671762*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{
+    StyleBox[
+     RowBox[{"MaxVelocity", "[", 
+      RowBox[{"eV_", ",", " ", "pL_", ",", " ", "fL_", ",", " ", "bR_"}], 
+      "]"}], "Input"], ":=", 
+    StyleBox[" ", "Input"], 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "mv", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"mv", " ", "=", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"eV", "*", 
+          RowBox[{"Log", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"pL", "+", "fL", "-", 
+              RowBox[{"bR", "*", 
+               RowBox[{"(", 
+                RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], "]"}]}], "-", 
+         RowBox[{"9.81", "*", 
+          RowBox[{"(", 
+           RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"MaxVelocity", "[", 
+    RowBox[{"291", ",", ".775", ",", ".415", ",", ".32"}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.5925568552333403`*^9, 3.59255703006634*^9}, 
+   3.592557061274125*^9, {3.5925571326332064`*^9, 3.5925571409536824`*^9}}],
+
+Cell[BoxData["112.07171326489839`"], "Output",
+ CellChangeTimes->{3.592559047571735*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part 3 FlightTime", "Subsection",
+ CellChangeTimes->{{3.592557165071062*^9, 3.5925571677022123`*^9}, {
+  3.592561572000124*^9, 3.592561576056356*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  StyleBox[
+   RowBox[{"FlightTime", "[", 
+    RowBox[{"eV_", ",", " ", "pL_", ",", " ", "fL_", ",", " ", "bR_"}], "]"}],
+    "Input"], 
+  StyleBox[" ", "Input"], 
+  StyleBox[":=", "Input"], 
+  StyleBox[" ", "Input"], 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"vm", ",", "hd1", ",", "hd2", ",", "htimelist", ",", "htime"}], 
+     "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"vm", "=", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"eV", "*", 
+         RowBox[{"Log", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"pL", "+", "fL"}], ")"}], "/", 
+           RowBox[{"(", 
+            RowBox[{"pL", "+", "fL", "-", 
+             RowBox[{"bR", "*", 
+              RowBox[{"(", 
+               RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], "]"}]}], "-", 
+        RowBox[{"9.81", "*", 
+         RowBox[{"(", 
+          RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"hd1", "=", 
+      RowBox[{
+       RowBox[{"eV", " ", 
+        RowBox[{"(", 
+         RowBox[{"fL", "/", "bR"}], ")"}]}], "-", 
+       RowBox[{"4.9`", " ", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"fL", "/", "bR"}], ")"}], "2"]}], "-", 
+       FractionBox[
+        RowBox[{"eV", " ", 
+         RowBox[{"(", 
+          RowBox[{"fL", "+", "pL", "-", 
+           RowBox[{"bR", " ", 
+            RowBox[{"(", 
+             RowBox[{"fL", "/", "bR"}], ")"}]}]}], ")"}], " ", 
+         RowBox[{"Log", "[", 
+          FractionBox[
+           RowBox[{"fL", "+", "pL"}], 
+           RowBox[{"fL", "+", "pL", "-", 
+            RowBox[{"bR", " ", 
+             RowBox[{"(", 
+              RowBox[{"fL", "/", "bR"}], ")"}]}]}]], "]"}]}], "bR"]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"hd2", 
+      StyleBox[" ",
+       FontWeight->"Plain"], "=", "   ", 
+      RowBox[{"hd1", "+", " ", 
+       RowBox[{"(", 
+        RowBox[{"vm", "*", 
+         RowBox[{"(", 
+          RowBox[{"t", "-", 
+           RowBox[{"fL", "/", "bR"}]}], ")"}]}], ")"}], "-", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"(", 
+          RowBox[{"9.81", "*", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"t", "-", 
+              RowBox[{"fL", "/", "bR"}]}], ")"}], "^", "2"}]}], ")"}], ")"}], 
+        "/", "2"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"htimelist", "=", " ", 
+      RowBox[{"Last", "[", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{"hd2", "\[Equal]", "0"}], ",", "t"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"htime", " ", "=", " ", 
+      RowBox[{"t", "/.", " ", "htimelist"}]}]}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"FlightTime", "[", 
+  RowBox[{"291", ",", ".775", ",", ".415", ",", ".32"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{" "}]}], "Input",
+ CellChangeTimes->{{3.59255720629442*^9, 3.59255721924016*^9}, {
+  3.59255862840576*^9, 3.592558631781953*^9}, {3.592558777125266*^9, 
+  3.5925588738317976`*^9}, {3.5925589607927713`*^9, 3.592559020887209*^9}}],
+
+Cell[BoxData["24.727564337189282`"], "Output",
+ CellChangeTimes->{3.592559021838263*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Citations APA format", "Section",
+ CellChangeTimes->{{3.592561603839945*^9, 3.5925616056880507`*^9}, {
+  3.5925616722968607`*^9, 3.592561687774746*^9}}],
+
+Cell["\<\
+Reference.wolfram.com. 2013. Wolfram Mathematica\[LongDash]Wolfram \
+Mathematica 9 Documentation. [online] Available at: \
+http://reference.wolfram.com/mathematica/guide/Mathematica.html [Accessed: 4 \
+Nov 2013].
+
+ French, T. 2013. UWA Class2Go | CITS2401 Computer Analysis & Visualisation. \
+[online] Available at: https://www.class2go.uwa.edu.au/CITS2401/Semester22013 \
+[Accessed: 4 Nov 2013].
+ 
+  Peraire, J. and Widnall, S. 2013. Variable Mass Systems, Rocket Equation. \
+[online] Available at: \
+http://ocw.mit.edu/courses/aeronautics-and-astronautics/16-07-dynamics-fall-\
+2009/lecture-notes/MIT16_07F09_Lec14.pdf [Accessed: 4 Nov 2013].
+ 
+\
+\>", "Text",
+ CellChangeTimes->{{3.592561681432383*^9, 3.592561690382895*^9}, {
+  3.5925620429420605`*^9, 3.5925620550607533`*^9}, {3.5925622356350813`*^9, 
+  3.5925622357720895`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{824, 972},
+WindowMargins->{{-1104, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 139, 2, 101, "Title"],
+Cell[564, 19, 396, 8, 126, "Subtitle"],
+Cell[CellGroupData[{
+Cell[985, 31, 146, 2, 70, "Section"],
+Cell[CellGroupData[{
+Cell[1156, 37, 155, 2, 49, "Subsection"],
+Cell[1314, 41, 385, 7, 30, "Text"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1748, 54, 89, 1, 70, "Section"],
+Cell[CellGroupData[{
+Cell[1862, 59, 101, 1, 49, "Subsection"],
+Cell[1966, 62, 468, 8, 87, "Text"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2483, 76, 92, 1, 70, "Section"],
+Cell[CellGroupData[{
+Cell[2600, 81, 7744, 223, 392, "Input"],
+Cell[10347, 306, 301, 6, 40, "Message"],
+Cell[10651, 314, 301, 6, 40, "Message"],
+Cell[10955, 322, 4016, 70, 290, "Output"],
+Cell[14974, 394, 261, 6, 40, "Message"],
+Cell[15238, 402, 261, 6, 40, "Message"],
+Cell[15502, 410, 259, 6, 40, "Message"],
+Cell[15764, 418, 259, 6, 40, "Message"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16060, 429, 208, 3, 49, "Subsection"],
+Cell[CellGroupData[{
+Cell[16293, 436, 3617, 99, 256, "Input"],
+Cell[19913, 537, 87, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20049, 544, 158, 2, 49, "Subsection"],
+Cell[CellGroupData[{
+Cell[20232, 550, 1234, 33, 107, "Input"],
+Cell[21469, 585, 88, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21606, 592, 156, 2, 49, "Subsection"],
+Cell[CellGroupData[{
+Cell[21787, 598, 3140, 89, 256, "Input"],
+Cell[24930, 689, 88, 1, 30, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25079, 697, 158, 2, 70, "Section"],
+Cell[25240, 701, 843, 19, 220, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
